@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "c3a40179-9891-438c-99f2-39de951e39e5",
+    "name": "Cartão de Crédito Familiar",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29130823"
+  },
+  "item": [
+    {
+      "name": "Buscar Membro Família",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/cartaoCredito/membros-familia/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cartaoCredito",
+            "membros-familia",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Membros Família",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/cartaoCredito/membros-familia",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cartaoCredito",
+            "membros-familia"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Membro Família",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nome\": \"FERNANDA ERCIANE CAMACHO\",\r\n    \"relacaoFamiliar\": \"MADASTRA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/cartaoCredito/familiares",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cartaoCredito",
+            "familiares"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Atualizar Membro Família",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nome\": \"ERCIANE FERNANDA OCHOA\",\r\n    \"relacaoFamiliar\": \"STIEFMUTTER\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/cartaoCredito/membros-familia/3/dados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cartaoCredito",
+            "membros-familia",
+            "3",
+            "dados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Excluir Membro Famíla",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/cartaoCredito/familiares/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cartaoCredito",
+            "familiares",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
