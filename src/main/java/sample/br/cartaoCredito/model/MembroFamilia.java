@@ -1,6 +1,7 @@
 package sample.br.cartaoCredito.model;
 
 import jakarta.persistence.*;
+import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -12,6 +13,13 @@ public class MembroFamilia implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -4967189648512386057L;
+
+    public MembroFamilia(){}
+
+    public MembroFamilia(MembroFamiliaDTO membroDTO){
+        this.nome = membroDTO.getNome();
+        this.relacaoFamiliar = membroDTO.getRelacaoFamiliar();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

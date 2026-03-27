@@ -4,23 +4,22 @@ Logo, MembroFamiliaResource deve virar MovimentoCartaoCreditoResource, assim com
 */
 
 package sample.br.cartaoCredito.resource;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.br.cartaoCredito.model.MembroFamilia;
 import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
-import sample.br.cartaoCredito.service.MembroFamiliaService;
+import sample.br.cartaoCredito.service.MovimentosCartaoService;
 import java.util.List;
 
 //@Tag(value = "Controle dos Membros de uma Família que realiza Movimentações no Cartão de Crédito")
 @RestController
 @RequestMapping("/api/cartaoCredito")
-public class MembroFamiliaResource {
+public class MovimentosCartaoResource {
 
    @Autowired
-   private MembroFamiliaService service;
+   private MovimentosCartaoService service;
 
    @GetMapping("/membros-familia")
    public ResponseEntity<List<MembroFamilia>> listarMembrosFamilia() {
@@ -32,7 +31,7 @@ public class MembroFamiliaResource {
        return service.findById(requestedId);
    }
 
-   @PostMapping("/familiares")
+   @PostMapping("/familiares/v1")
    public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamilia membro) {
        return service.save(membro);
    }
@@ -47,6 +46,11 @@ public class MembroFamiliaResource {
    public void atualizarMembroFamilia(@PathVariable(required = true) Long requestedId, @RequestBody @Valid MembroFamiliaDTO membroDTO) {
        service.atualizarMembroFamilia(requestedId, membroDTO);
    }
+
+   @PostMapping("/familiares")
+    public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membro) {
+        return service.save(membro);
+    }
 
 /*
    --Precisara do @RequestBody

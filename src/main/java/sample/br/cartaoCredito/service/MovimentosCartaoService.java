@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MembroFamiliaService {
+public class MovimentosCartaoService {
 
    @Autowired
    MembroFamiliaRepository repository;
@@ -45,6 +45,12 @@ public class MembroFamiliaService {
    // Pode-se usar apenas "@Transactional" uma vez que sao formas equivalentes, ja que o valor REQUIRED e' o padrao.
    @Transactional(propagation = Propagation.REQUIRED)
    public MembroFamilia save(MembroFamilia membro) {
+       return repository.save(membro);
+   }
+
+   @Transactional(propagation = Propagation.REQUIRED)
+   public MembroFamilia save(MembroFamiliaDTO membroDTO) {
+       MembroFamilia membro = new MembroFamilia(membroDTO);
        return repository.save(membro);
    }
 
