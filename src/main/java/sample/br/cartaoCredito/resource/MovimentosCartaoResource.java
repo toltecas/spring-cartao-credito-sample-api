@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.br.cartaoCredito.model.MembroFamilia;
 import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
+import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
 import sample.br.cartaoCredito.service.MovimentosCartaoService;
 import java.util.List;
 
@@ -48,10 +49,16 @@ public class MovimentosCartaoResource {
    }
 
    @PostMapping("/familiares")
-    public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membro) {
+    public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membroDTO) {
+       MembroFamilia membro = new MembroFamilia(membroDTO);
         return service.save(membro);
     }
-
+   /*
+    @PostMapping("/movimentos")
+    public MovimentosCartaoDTO criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membro) {
+        return service.save(membro);
+    }
+*/
 /*
    --Precisara do @RequestBody
    @PatchMapping("/familiares/nome")

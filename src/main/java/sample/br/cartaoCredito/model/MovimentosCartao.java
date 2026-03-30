@@ -1,6 +1,7 @@
 package sample.br.cartaoCredito.model;
 
 import jakarta.persistence.*;
+import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -8,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "movimentacao")
-public class MovimentacaoCartao implements Serializable {
+public class MovimentosCartao implements Serializable {
     @Serial
     private static final long serialVersionUID = 920835965172954074L;
 
@@ -18,13 +19,22 @@ public class MovimentacaoCartao implements Serializable {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigomembro", referencedColumnName = "codigomembro", nullable=false)
-    private MembroFamilia membroId;
+    private MembroFamilia membro;
     @Column(name = "valormovimento")
     private Double valorMovimento;
     @Column(name = "datamovimento")
     private Date dataMovimento;
     @Column(name = "descricaomovimento")
     private String descricaoMovimento;
+
+    public MovimentosCartao(){}
+
+    public MovimentosCartao(MovimentosCartaoDTO movimentosDTO) {
+        this.membro.setId(movimentosDTO.getMembroId());
+        this.valorMovimento = movimentosDTO.getValorMovimento();
+        this.dataMovimento = movimentosDTO.getDataMovimento();
+        this.descricaoMovimento = movimentosDTO.getDescricaoMovimento();
+    }
 
     public Long getId() {
         return id;
@@ -34,12 +44,12 @@ public class MovimentacaoCartao implements Serializable {
         this.id = id;
     }
 
-    public MembroFamilia getMembroId() {
-        return membroId;
+    public MembroFamilia getMembro() {
+        return membro;
     }
 
-    public void setMembroId(MembroFamilia membroId) {
-        this.membroId = membroId;
+    public void setMembro(MembroFamilia membro) {
+        this.membro = membro;
     }
 
     public Double getValorMovimento() {
