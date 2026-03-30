@@ -8,9 +8,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sample.br.cartaoCredito.model.MembroFamilia;
-import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
-import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
+import sample.br.cartaoCredito.model.MembrosFamilia;
+import sample.br.cartaoCredito.model.dto.MembrosFamiliaDTO;
 import sample.br.cartaoCredito.service.MovimentosCartaoService;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class MovimentosCartaoResource {
    private MovimentosCartaoService service;
 
    @GetMapping("/membros-familia")
-   public ResponseEntity<List<MembroFamilia>> listarMembrosFamilia() {
+   public ResponseEntity<List<MembrosFamilia>> listarMembrosFamilia() {
        return service.findAll();
    }
 
@@ -33,7 +32,7 @@ public class MovimentosCartaoResource {
    }
 
    @PostMapping("/familiares/v1")
-   public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamilia membro) {
+   public MembrosFamilia criarMembroFamilia(@RequestBody @Valid MembrosFamilia membro) {
        return service.save(membro);
    }
 
@@ -44,13 +43,13 @@ public class MovimentosCartaoResource {
 
    /** Aqui passou-se a utilizar o Pattern DTO. Ele sera estendido para os Endpoints que utilizam Entity Classes. */
    @PutMapping("/membros-familia/{requestedId}/dados")
-   public void atualizarMembroFamilia(@PathVariable(required = true) Long requestedId, @RequestBody @Valid MembroFamiliaDTO membroDTO) {
+   public void atualizarMembroFamilia(@PathVariable(required = true) Long requestedId, @RequestBody @Valid MembrosFamiliaDTO membroDTO) {
        service.atualizarMembroFamilia(requestedId, membroDTO);
    }
 
    @PostMapping("/familiares")
-    public MembroFamilia criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membroDTO) {
-       MembroFamilia membro = new MembroFamilia(membroDTO);
+    public MembrosFamilia criarMembroFamilia(@RequestBody @Valid MembrosFamiliaDTO membroDTO) {
+       MembrosFamilia membro = new MembrosFamilia(membroDTO);
         return service.save(membro);
     }
    /*

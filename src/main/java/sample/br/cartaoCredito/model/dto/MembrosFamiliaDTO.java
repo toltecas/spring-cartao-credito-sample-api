@@ -2,7 +2,7 @@ package sample.br.cartaoCredito.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class MembroFamiliaDTO {
+public class MembrosFamiliaDTO {
 
    @NotBlank(message = "O Nome do Membro da Família deve ser Informado.")
    private String nome;

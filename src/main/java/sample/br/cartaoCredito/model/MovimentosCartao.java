@@ -19,7 +19,7 @@ public class MovimentosCartao implements Serializable {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigomembro", referencedColumnName = "codigomembro", nullable=false)
-    private MembroFamilia membro;
+    private MembrosFamilia membro;
     @Column(name = "valormovimento")
     private Double valorMovimento;
     @Column(name = "datamovimento")
@@ -44,11 +44,11 @@ public class MovimentosCartao implements Serializable {
         this.id = id;
     }
 
-    public MembroFamilia getMembro() {
+    public MembrosFamilia getMembro() {
         return membro;
     }
 
-    public void setMembro(MembroFamilia membro) {
+    public void setMembro(MembrosFamilia membro) {
         this.membro = membro;
     }
 

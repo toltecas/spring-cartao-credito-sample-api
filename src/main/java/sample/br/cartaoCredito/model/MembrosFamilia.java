@@ -1,7 +1,7 @@
 package sample.br.cartaoCredito.model;
 
 import jakarta.persistence.*;
-import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
+import sample.br.cartaoCredito.model.dto.MembrosFamiliaDTO;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,14 +9,14 @@ import java.io.Serializable;
 @Entity
 //@Table(name = "public.\"Membro\"")
 @Table(name = "membro")
-public class MembroFamilia implements Serializable {
+public class MembrosFamilia implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -4967189648512386057L;
 
-    public MembroFamilia(){}
+    public MembrosFamilia(){}
 
-    public MembroFamilia(MembroFamiliaDTO membroDTO){
+    public MembrosFamilia(MembrosFamiliaDTO membroDTO){
         this.nome = membroDTO.getNome();
         this.relacaoFamiliar = membroDTO.getRelacaoFamiliar();
     }

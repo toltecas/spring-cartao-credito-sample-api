@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import sample.br.cartaoCredito.model.MembroFamilia;
+import sample.br.cartaoCredito.model.MembrosFamilia;
 import sample.br.cartaoCredito.model.MovimentosCartao;
-import sample.br.cartaoCredito.model.dto.MembroFamiliaDTO;
+import sample.br.cartaoCredito.model.dto.MembrosFamiliaDTO;
 import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
-import sample.br.cartaoCredito.repository.MembroFamiliaRepository;
+import sample.br.cartaoCredito.repository.MembrosFamiliaRepository;
 import sample.br.cartaoCredito.repository.MovimentosCartaoRepository;
 
 import java.util.List;
@@ -22,15 +22,15 @@ import java.util.Optional;
 public class MovimentosCartaoService {
 
    @Autowired
-   MembroFamiliaRepository membroRepository;
+   MembrosFamiliaRepository membroRepository;
 
    @Autowired
    MovimentosCartaoRepository movimentosRepository;
 
    @Transactional(readOnly = true)
-   public ResponseEntity<List<MembroFamilia>> findAll(){
+   public ResponseEntity<List<MembrosFamilia>> findAll(){
 
-       List<MembroFamilia> listaMembros = membroRepository.findAll();
+       List<MembrosFamilia> listaMembros = membroRepository.findAll();
 
        if(!listaMembros.isEmpty()) {
            return ResponseEntity.ok(listaMembros);
@@ -42,7 +42,7 @@ public class MovimentosCartaoService {
    @Transactional(readOnly = true)
    public ResponseEntity<?> findById(Long id){
 
-       Optional<MembroFamilia> membro = membroRepository.findById(id);
+       Optional<MembrosFamilia> membro = membroRepository.findById(id);
 
        if(!membro.isEmpty()) {
            return ResponseEntity.ok(membro);
@@ -53,7 +53,7 @@ public class MovimentosCartaoService {
 
    // Pode-se usar apenas "@Transactional" uma vez que sao formas equivalentes, ja que o valor REQUIRED e' o padrao.
    @Transactional(propagation = Propagation.REQUIRED)
-   public MembroFamilia save(MembroFamilia membro) {
+   public MembrosFamilia save(MembrosFamilia membro) {
        return membroRepository.save(membro);
    }
 
@@ -63,26 +63,25 @@ public class MovimentosCartaoService {
    }
 
    @Transactional(propagation = Propagation.REQUIRED)
-   public void atualizarMembroFamilia(Long id, MembroFamiliaDTO membroDTO) {
+   public void atualizarMembroFamilia(Long id, MembrosFamiliaDTO membroDTO) {
 
-       MembroFamilia membro = validarMembroFamilia(id, membroDTO);
+       MembrosFamilia membro = validarMembroFamilia(id, membroDTO);
 
        membroRepository.save(membro);
    }
-/*
+
    @Transactional(propagation = Propagation.REQUIRED)
     public MovimentosCartao save(MovimentosCartaoDTO movimentosDTO) {
         MovimentosCartao movimentos = new MovimentosCartao(movimentosDTO);
         return movimentosRepository.save(movimentos);
     }
-*/
     
-   private MembroFamilia validarMembroFamilia(Long id, MembroFamiliaDTO membroDTO){
+   private MembrosFamilia validarMembroFamilia(Long id, MembrosFamiliaDTO membroDTO){
 
        /** Validando o DTO (convertido)/JSON de Entrada do Controller. */
-       Optional<MembroFamiliaDTO> membroDTOOpt = Optional.ofNullable(membroDTO);
+       Optional<MembrosFamiliaDTO> membroDTOOpt = Optional.ofNullable(membroDTO);
 
-       MembroFamiliaDTO membroDTOAux = membroDTOOpt.orElseThrow(
+       MembrosFamiliaDTO membroDTOAux = membroDTOOpt.orElseThrow(
                ()-> new EntityNotFoundException("Objeto JSON enviado no Body nao pode ser nulo!")
        );
 
@@ -93,9 +92,9 @@ public class MovimentosCartaoService {
        });
 
        /** Validando o Objeto do Banco de Dados. */
-       Optional<MembroFamilia> membroOpt = membroRepository.findById(id);
+       Optional<MembrosFamilia> membroOpt = membroRepository.findById(id);
 
-       MembroFamilia membro = membroOpt.orElseThrow(
+       MembrosFamilia membro = membroOpt.orElseThrow(
                ()->new EntityNotFoundException("Membro Familiar com ID " + id + "Nao Encontrado!")
        );
 
