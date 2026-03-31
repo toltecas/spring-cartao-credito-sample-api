@@ -10,9 +10,11 @@ import sample.br.cartaoCredito.model.MembrosFamilia;
 import sample.br.cartaoCredito.model.MovimentosCartao;
 import sample.br.cartaoCredito.model.dto.MembrosFamiliaDTO;
 import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
+import sample.br.cartaoCredito.model.mapp.MovimentosCartaoMapper;
 import sample.br.cartaoCredito.repository.MembrosFamiliaRepository;
 import sample.br.cartaoCredito.repository.MovimentosCartaoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +22,9 @@ import java.util.Optional;
 //Pode-se usar "@Transactional" em nivel de Classe, porem com efeito apenas aos metodos Publicos (Regra IoC que cria um Pattern Proxy para essa anotacao).
 //@Transactional
 public class MovimentosCartaoService {
+
+   @Autowired
+   MovimentosCartaoMapper movimentosMapper;
 
    @Autowired
    MembrosFamiliaRepository membroRepository;
@@ -69,13 +74,45 @@ public class MovimentosCartaoService {
 
        membroRepository.save(membro);
    }
-/*
+
    @Transactional(propagation = Propagation.REQUIRED)
-    public MovimentosCartao save(MovimentosCartaoDTO movimentosDTO) {
-        MovimentosCartao movimentos = new MovimentosCartao(movimentosDTO);
-        return movimentosRepository.save(movimentos);
+    public MovimentosCartaoDTO salvarMovimento(MovimentosCartaoDTO movimentosDTO) {
+
+       MovimentosCartao movimentos = movimentosMapper.toEntity(movimentosDTO);
+       movimentosRepository.save(movimentos);
+
+       return movimentosDTO;
     }
- */
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<MovimentosCartaoDTO>> listarMovimentos(){
+
+       List<MovimentosCartaoDTO> listaMovimentosDTO = new ArrayList<>();
+
+        List<MovimentosCartao> listaMovimentos = movimentosRepository.findAll();
+
+        /** Validando o DTO (convertido)/JSON de Entrada do Controller. */
+        Optional<List<MovimentosCartao>> movimentosOpt = Optional.ofNullable(listaMovimentos);
+
+        if (movimentosOpt.isPresent()){
+
+            listaMovimentosDTO = movimentosMapper.toDto(listaMovimentos);
+
+        }else{
+
+            new EntityNotFoundException("Consulta para Movimentos no BD retornou vazia!");
+        }
+
+        /*
+        //Construcao suportada.
+        movimentosDTOOpt.ifPresent(movimentos -> {
+           movimentosMapper.toDto(listaMovimentos);
+        });
+         */
+
+        return ResponseEntity.ok(listaMovimentosDTO);
+    }
+
    private MembrosFamilia validarMembroFamilia(Long id, MembrosFamiliaDTO membroDTO){
 
        /** Validando o DTO (convertido)/JSON de Entrada do Controller. */
