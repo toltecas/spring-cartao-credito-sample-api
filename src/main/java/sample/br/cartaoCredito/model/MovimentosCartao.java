@@ -28,14 +28,14 @@ public class MovimentosCartao implements Serializable {
     private String descricaoMovimento;
 
     public MovimentosCartao(){}
-
+/*
     public MovimentosCartao(MovimentosCartaoDTO movimentosDTO) {
         this.membro.setId(movimentosDTO.getMembroId());
         this.valorMovimento = movimentosDTO.getValorMovimento();
         this.dataMovimento = movimentosDTO.getDataMovimento();
         this.descricaoMovimento = movimentosDTO.getDescricaoMovimento();
     }
-
+*/
     public Long getId() {
         return id;
     }

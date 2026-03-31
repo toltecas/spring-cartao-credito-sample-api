@@ -69,13 +69,13 @@ public class MovimentosCartaoService {
 
        membroRepository.save(membro);
    }
-
+/*
    @Transactional(propagation = Propagation.REQUIRED)
     public MovimentosCartao save(MovimentosCartaoDTO movimentosDTO) {
         MovimentosCartao movimentos = new MovimentosCartao(movimentosDTO);
         return movimentosRepository.save(movimentos);
     }
-    
+ */
    private MembrosFamilia validarMembroFamilia(Long id, MembrosFamiliaDTO membroDTO){
 
        /** Validando o DTO (convertido)/JSON de Entrada do Controller. */
