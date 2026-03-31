@@ -2,11 +2,6 @@
 NOTA: O ideal é que seus Controllers sejam organizados com base em Recursos (Business Resources) e não na estrutura das suas classes (sejam elas Entities ou DTOs).
 */
 
-/*
-NOTA: O ideal é que seus Controllers sejam organizados com base em Recursos (Business Resources) e não na estrutura das suas classes (sejam elas Entities ou DTOs).
-Logo, MembroFamiliaResource deve virar MovimentoCartaoCreditoResource, assim como seu Service.
-*/
-
 package sample.br.cartaoCredito.resource;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
