@@ -1,5 +1,9 @@
 /*
 NOTA: O ideal é que seus Controllers sejam organizados com base em Recursos (Business Resources) e não na estrutura das suas classes (sejam elas Entities ou DTOs).
+*/
+
+/*
+NOTA: O ideal é que seus Controllers sejam organizados com base em Recursos (Business Resources) e não na estrutura das suas classes (sejam elas Entities ou DTOs).
 Logo, MembroFamiliaResource deve virar MovimentoCartaoCreditoResource, assim como seu Service.
 */
 
@@ -10,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sample.br.cartaoCredito.model.MembrosFamilia;
 import sample.br.cartaoCredito.model.dto.MembrosFamiliaDTO;
+import sample.br.cartaoCredito.model.dto.MovimentosCartaoDTO;
 import sample.br.cartaoCredito.service.MovimentosCartaoService;
 import java.util.List;
 
@@ -52,12 +57,17 @@ public class MovimentosCartaoResource {
        MembrosFamilia membro = new MembrosFamilia(membroDTO);
         return service.save(membro);
     }
-   /*
+
     @PostMapping("/movimentos")
-    public MovimentosCartaoDTO criarMembroFamilia(@RequestBody @Valid MembroFamiliaDTO membro) {
-        return service.save(membro);
+    public MovimentosCartaoDTO criarMovimentoCartao(@RequestBody @Valid MovimentosCartaoDTO movimentosDTO) {
+        return service.salvarMovimento(movimentosDTO);
     }
-*/
+
+    @GetMapping("/movimentos-cartao")
+    public ResponseEntity<List<MovimentosCartaoDTO>> listarMovimentos() {
+        return service.listarMovimentos();
+    }
+
 /*
    --Precisara do @RequestBody
    @PatchMapping("/familiares/nome")
