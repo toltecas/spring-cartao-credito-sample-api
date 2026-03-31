@@ -14,13 +14,6 @@ public class MembrosFamilia implements Serializable {
     @Serial
     private static final long serialVersionUID = -4967189648512386057L;
 
-    public MembrosFamilia(){}
-
-    public MembrosFamilia(MembrosFamiliaDTO membroDTO){
-        this.nome = membroDTO.getNome();
-        this.relacaoFamiliar = membroDTO.getRelacaoFamiliar();
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigomembro")
@@ -29,6 +22,13 @@ public class MembrosFamilia implements Serializable {
     private String nome;
     @Column(name = "relacaofamiliar")
     private String relacaoFamiliar;
+
+    public MembrosFamilia(){}
+
+    public MembrosFamilia(MembrosFamiliaDTO membroDTO){
+        this.nome = membroDTO.getNome();
+        this.relacaoFamiliar = membroDTO.getRelacaoFamiliar();
+    }
 
     public Integer getId() {
         return id;
