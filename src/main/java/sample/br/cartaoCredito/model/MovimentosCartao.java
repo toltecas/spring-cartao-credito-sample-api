@@ -17,7 +17,7 @@ public class MovimentosCartao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigomovimento")
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "codigomembro", referencedColumnName = "codigomembro", nullable=false)
     private MembrosFamilia membro;
     @Column(name = "valormovimento")
@@ -28,14 +28,7 @@ public class MovimentosCartao implements Serializable {
     private String descricaoMovimento;
 
     public MovimentosCartao(){}
-/*
-    public MovimentosCartao(MovimentosCartaoDTO movimentosDTO) {
-        this.membro.setId(movimentosDTO.getMembroId());
-        this.valorMovimento = movimentosDTO.getValorMovimento();
-        this.dataMovimento = movimentosDTO.getDataMovimento();
-        this.descricaoMovimento = movimentosDTO.getDescricaoMovimento();
-    }
-*/
+
     public Long getId() {
         return id;
     }
