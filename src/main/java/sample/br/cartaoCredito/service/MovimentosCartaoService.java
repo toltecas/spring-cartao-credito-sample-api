@@ -75,6 +75,7 @@ public class MovimentosCartaoService {
        membroRepository.save(membro);
    }
 
+   //Funcional: OK. Par com public MovimentosCartaoDTO criarMovimentoCartao (Controller).
    @Transactional(propagation = Propagation.REQUIRED)
     public MovimentosCartaoDTO salvarMovimento(MovimentosCartaoDTO movimentosDTO) {
 

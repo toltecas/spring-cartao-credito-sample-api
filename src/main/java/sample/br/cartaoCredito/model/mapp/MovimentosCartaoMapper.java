@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MovimentosCartaoMapper {
 
+    @Mapping(source = "id", target = "codigoMovimento")
     @Mapping(source = "membro.id", target = "codigoMembroFamilia")
     @Mapping(source = "membro.nome", target = "nomeMembroFamilia")
     MovimentosCartaoDTO toDto(MovimentosCartao movimento);
