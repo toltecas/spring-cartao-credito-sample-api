@@ -11,6 +11,7 @@ import java.util.List;
 public interface MovimentosCartaoMapper {
 
     @Mapping(source = "membro.id", target = "codigoMembroFamilia")
+    @Mapping(source = "membro.nome", target = "nomeMembroFamilia")
     MovimentosCartaoDTO toDto(MovimentosCartao movimento);
 
     List<MovimentosCartaoDTO> toDto(List<MovimentosCartao> movimentos);

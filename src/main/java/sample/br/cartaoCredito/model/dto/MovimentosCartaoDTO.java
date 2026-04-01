@@ -13,6 +13,7 @@ public record MovimentosCartaoDTO (
         @NotNull(message = "O Valor para o Codigo de Relacionamento com o Membro Familiar não pode ser nulo!")
         @Positive(message = "O Valor para o Codigo de Relacionamento com o Membro Familiar precisa ser positivo!")
         Integer codigoMembroFamilia,
+        String nomeMembroFamilia,
         @Positive(message = "O Valor do Movimento precisa ser maior que zero!")
         @NotNull(message = "O Valor do Movimento não pode ser nulo!")
         Double valorMovimento,
