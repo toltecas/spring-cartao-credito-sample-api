@@ -13,7 +13,6 @@ public interface MovimentosCartaoMapper {
     @Mapping(source = "membro.id", target = "codigoMembroFamilia")
     MovimentosCartaoDTO toDto(MovimentosCartao movimento);
 
-    @Mapping(source = "membro.id", target = "codigoMembroFamilia")
     List<MovimentosCartaoDTO> toDto(List<MovimentosCartao> movimentos);
 
     @Mapping(source = "codigoMembroFamilia", target = "membro.id")
